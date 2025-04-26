@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:salonapp/customer_screen/login%20screen/cust_login_page.dart';
+import 'package:salonapp/saloon_pannel/saloon_login.dart';
 import 'package:salonapp/services/flutter_provider.dart';
 import 'package:salonapp/services/google_home_screen.dart';
 import 'package:salonapp/services/notifications.dart';
@@ -10,19 +11,19 @@ import 'admin_pannel/adminloginscreen/admin_booking_page.dart';
 import 'admin_pannel/adminloginscreen/admin_home_page.dart';
 import 'admin_pannel/adminloginscreen/admin_login_page.dart';
 import 'admin_pannel/adminloginscreen/admin_signup_page.dart';
+import 'admin_pannel/all_logins.dart';
 import 'admin_pannel/customer_list.dart';
 import 'customer_screen/booking_slote.dart';
 import 'customer_screen/cust_booked_details.dart';
+import 'customer_screen/customer_booking_history.dart';
 import 'customer_screen/customer_home_screen.dart';
 import 'customer_screen/detailed_page.dart';
 import 'customer_screen/details_screen.dart';
-import 'customer_screen/login screen/cust_home.dart';
 import 'customer_screen/login screen/cust_profile_page.dart';
 import 'customer_screen/login screen/cust_salon_list.dart';
 import 'customer_screen/login screen/cust_signup_page.dart';
 import 'customer_screen/onboadring.dart';
 import 'customer_screen/ratings.dart';
-
 
 Future main()async {
   WidgetsFlutterBinding.ensureInitialized();
@@ -57,7 +58,7 @@ class _MySalonState extends State<MySalon>{
         title: "MySalon",
         theme: ThemeData.light(),
         home: Scaffold(
-          body: LoginPage(),
+          body:AllLogins(),
         ),
     );
   }

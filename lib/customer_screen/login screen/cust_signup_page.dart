@@ -4,8 +4,9 @@ import 'package:random_string/random_string.dart';
 import 'package:salonapp/services/shared_preferences.dart';
 import '../../services/database.dart';
 import '../customer_home_screen.dart';
-import 'cust_home.dart';
+
 import 'cust_login_page.dart';
+import 'cust_salon_list.dart';
 import 'firebase_services.dart';
 
 class SignUpPage extends StatefulWidget{
@@ -51,7 +52,8 @@ class _SignUpPageState extends State<SignUpPage>{
    await MyDatabase().addUserDetails(userInfoMap,id);
     if(user!=null){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text(" SignIn SuccessFully !!")));
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerHomePage(userid: username)));
+     // Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerHomePage(userid: username)));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustHomePage1(email:username)));
     }
     else{
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Some Error")));
@@ -73,13 +75,18 @@ class _SignUpPageState extends State<SignUpPage>{
     return Scaffold(
       body:
       Container(
-        height: double.infinity,
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Color(0xff715901),
-            borderRadius: BorderRadius.circular(10),
-          ),
-          padding: EdgeInsets.symmetric(horizontal: 20),
+      height: double.infinity,
+        width: double.infinity,
+        alignment: Alignment.center,
+        padding: EdgeInsets.only(top: 20,left: 20,right: 20),
+         margin: EdgeInsets.only(top: 60,),
+         decoration: BoxDecoration(
+         color: Colors.orangeAccent,
+         borderRadius: BorderRadius.only
+        (topRight: Radius.circular(40),
+        topLeft: Radius.circular(40),
+        )
+        ),
           child: Form(
                       child: Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -181,17 +188,18 @@ class _SignUpPageState extends State<SignUpPage>{
                               alignment: Alignment.center,
                               width: double.infinity,
                               decoration: BoxDecoration(
-                                gradient: LinearGradient(
-                                    colors: [
-                                      Color(0xff540102),
-                                      //Color(0xffb24093),
-                                      Color(0xef010156),
-                                      //Color(0xef119156),
-                                    ]),
+                                // gradient: LinearGradient(
+                                //     colors: [
+                                //       Color(0xff540102),
+                                //       //Color(0xffb24093),
+                                //       Color(0xef010156),
+                                //       //Color(0xef119156),
+                                //     ]),
+                                color: Colors.white,
                                 borderRadius: BorderRadius.circular(30),
                               ),
                               child: Text("SignUp",
-                                style: TextStyle(color: Colors.white,
+                                style: TextStyle(color: Colors.orange,
                                 fontWeight: FontWeight.bold,
                                 fontSize: 14),),
                             ),
@@ -201,7 +209,7 @@ class _SignUpPageState extends State<SignUpPage>{
                             mainAxisAlignment: MainAxisAlignment.center,
                             children: [
                               Text("Already Have An Account ? ",
-                              style: TextStyle(color: Colors.blue,
+                              style: TextStyle(color: Colors.black,
                               ),),
                               GestureDetector(
                                 onTap: (){
@@ -209,7 +217,7 @@ class _SignUpPageState extends State<SignUpPage>{
                                       builder: (context)=>LoginPage()));
                                 },
                                 child:Text(" Go to Login",style: TextStyle(
-                                    color: Colors.white,
+                                    color: Colors.blue,
                                     fontWeight: FontWeight.bold
                                 ),),
                               ),

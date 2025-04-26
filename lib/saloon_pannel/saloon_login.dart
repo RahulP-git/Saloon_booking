@@ -1,17 +1,19 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:salonapp/saloon_pannel/saloon_home.dart';
+import 'package:salonapp/saloon_pannel/saloon_signup.dart';
 import 'package:salonapp/services/database.dart';
 import '../../customer_screen/login screen/firebase_services.dart';
-import 'admin_home_page.dart';
-import 'admin_signup_page.dart';
+import '../admin_pannel/adminloginscreen/admin_signup_page.dart';
 
-class AdminLoginPage extends StatefulWidget{
+
+class SaloonLoginPage extends StatefulWidget{
   @override
-  __AdminLoginPageState createState()=>__AdminLoginPageState();
+  _SaloonLoginPageState createState()=>_SaloonLoginPageState();
 }
 
-class __AdminLoginPageState extends State<AdminLoginPage>{
+class _SaloonLoginPageState extends State<SaloonLoginPage>{
   FirebaseAuthServices _auth=FirebaseAuthServices();
   TextEditingController _emailController= TextEditingController();
   TextEditingController _passwordController=TextEditingController();
@@ -30,7 +32,7 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
     }
     if(user!=null){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successfully !!")));
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminHomePage(email: email,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>SaloonHomePage(email: email,)));
     }else
     {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Some Error")));
@@ -45,11 +47,11 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
       Container(
         height: double.infinity,
         width: double.infinity,
-       // padding: const EdgeInsets.only(top: 40,),
+        // padding: const EdgeInsets.only(top: 40,),
         margin: const EdgeInsets.only(top: 60,),
         decoration: BoxDecoration(
-          borderRadius: BorderRadius.circular(20),
-          color: Colors.orange
+            borderRadius: BorderRadius.circular(20),
+            color: Colors.orange
         ),
         child:
         Form(
@@ -62,7 +64,7 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 SizedBox(height: 10,),
-                Text("Admin Login !!",
+                Text("Saloon Login !!",
                   style: TextStyle(color: Colors.white,
                       fontSize: 17,
                       fontWeight: FontWeight.bold),),
@@ -87,6 +89,7 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
                 ),
 
                 SizedBox(height: 10,),
+
                 GestureDetector(
                   onTap:(){
                     disable?Icon(Icons.visibility):Icon(Icons.visibility_off);
@@ -124,12 +127,12 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
                     alignment: Alignment.center,
                     width: double.infinity,
                     decoration: BoxDecoration(
-                     color: Colors.white,
+                      color: Colors.white,
                       borderRadius: BorderRadius.circular(30),
                     ),
                     child: Text("LogIn",
                       style: TextStyle(color: Colors.amber,
-                      fontWeight: FontWeight.bold),),
+                          fontWeight: FontWeight.bold),),
                   ),
                 ),
                 SizedBox(height: 10,),
@@ -137,10 +140,10 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     Text("Don't Have An Account ?",
-                    style: TextStyle(color: Colors.blue),),
+                      style: TextStyle(color: Colors.blue),),
                     GestureDetector(
                       onTap: (){
-                        Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminSignUpPage()));
+                        Navigator.push(context, MaterialPageRoute(builder: (context)=>SaloonSignUpPage()));
                       },
                       child:Text(" SignUp",style: TextStyle(
                           color: Colors.white,
@@ -166,11 +169,11 @@ class __AdminLoginPageState extends State<AdminLoginPage>{
         else if(result.data()['password'!=_passwordController.text.trim()]){
           ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Password is not Correct")));
         }
-       else{
-         ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("LoginIn Successfully !!")));
-         Navigator.push(context, MaterialPageRoute(builder: (context)=>AdminHomePage(email: _emailController.text,)));
+        else{
+          ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("LoginIn Successfully !!")));
+          Navigator.push(context, MaterialPageRoute(builder: (context)=>SaloonHomePage(email: _emailController.text,)));
         }
-       });
+      });
     });
   }
 }

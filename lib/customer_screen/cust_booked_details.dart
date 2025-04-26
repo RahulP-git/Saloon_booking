@@ -30,7 +30,7 @@ FirebaseFirestore _auth=  FirebaseFirestore.instance;
         title: Text("My Bookings"),
         centerTitle: true,
       ),
-      backgroundColor: Color(0xff715901),
+      backgroundColor: Colors.orangeAccent,
       body: StreamBuilder<QuerySnapshot>(
 
         stream: FirebaseFirestore.instance.collection('UserBooking').snapshots(),
@@ -120,7 +120,7 @@ FirebaseFirestore _auth=  FirebaseFirestore.instance;
                               GestureDetector(
                                 onTap: () {
                                  Navigator.push(context, MaterialPageRoute(
-                                     builder: (context)=>RatingsPage()));
+                                     builder: (context)=>RatingsPage(email: Email,)));
                                 },
                                 child: Container(
                                   height: 35,

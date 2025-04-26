@@ -23,13 +23,22 @@ class MyDatabase{
         .collection("UserBooking")
         .add(UserBookedinfoMap);
   }
-
+// add Admin Details
   Future addAdminDetails(Map<String, dynamic> AdmininfoMap, String id) async{
     return await FirebaseFirestore.instance
         .collection("Admin")
         .doc(id)
         .set(AdmininfoMap);
   }
+
+  // add Admin Details
+  Future addSaloonDetails(Map<String, dynamic> SalooninfoMap, String id) async{
+    return await FirebaseFirestore.instance
+        .collection("Salon")
+        .doc(id)
+        .set(SalooninfoMap);
+  }
+
 
   Future<Stream<QuerySnapshot>> getBookings() async{
     return FirebaseFirestore.instance.collection("Booking").snapshots();
@@ -42,20 +51,20 @@ class MyDatabase{
 
   //CRUD Operations  //Customer Profile Page
   final fire= FirebaseFirestore.instance;
-  create(UserDetails user){
-    try{
-      fire.collection("users").add({
-        "Name":user.Name,
-        "Email":user.Email,
-        "MobileNo":user.MobNo,
-        "Address":user.Address,
-      });
-      print("Created SuccessFully");
-    }catch(e){
- print(e.toString());
-
-    }
-  }
+ //  create(UserDetails user){
+ //    try{
+ //      fire.collection("users").add({
+ //        "Name":user.Name,
+ //        "Email":user.Email,
+ //        "MobileNo":user.MobNo,
+ //        "Address":user.Address,
+ //      });
+ //      print("Created SuccessFully");
+ //    }catch(e){
+ // print(e.toString());
+ //
+ //    }
+ //  }
 
   read()async{
     try{

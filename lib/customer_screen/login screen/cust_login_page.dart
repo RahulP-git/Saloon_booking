@@ -3,7 +3,8 @@ import 'package:firebase_auth/firebase_auth.dart';
 
 import '../../services/shared_preferences.dart';
 import '../customer_home_screen.dart';
-import 'cust_home.dart';
+
+import 'cust_salon_list.dart';
 import 'cust_signup_page.dart';
 import 'firebase_services.dart';
 
@@ -40,7 +41,8 @@ class _LoginPageState extends State<LoginPage>{
     }
     if(user!=null){
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Login Successfully !!")));
-      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerHomePage(userid: email,)));
+     // Navigator.push(context, MaterialPageRoute(builder: (context)=>CustomerHomePage(userid: email,)));
+      Navigator.push(context, MaterialPageRoute(builder: (context)=>CustHomePage1(email:email)));
     }else
     {
       ScaffoldMessenger.of(context).showSnackBar(SnackBar(content: Text("Some Error")));
@@ -59,9 +61,13 @@ class _LoginPageState extends State<LoginPage>{
           width: double.infinity,
           alignment: Alignment.center,
           padding: EdgeInsets.only(top: 20,left: 20,right: 20),
+          margin: EdgeInsets.only(top: 60,),
           decoration: BoxDecoration(
-           color: Color(0xff715901),
-            borderRadius: BorderRadius.circular(10),
+           color: Colors.orangeAccent,
+            borderRadius: BorderRadius.only
+              (topRight: Radius.circular(40),
+              topLeft: Radius.circular(40),
+            )
           ),
           child:
               Form(
@@ -132,34 +138,48 @@ class _LoginPageState extends State<LoginPage>{
                         alignment: Alignment.center,
                         width: double.infinity,
                         decoration: BoxDecoration(
-                          gradient: LinearGradient(
-                              colors: [
-                                Color(0xff540102),
-                                //Color(0xffb24093),
-                                Color(0xef010156),
-                                //Color(0xef119156),
-                              ]),
+
+                          color: Colors.white,
                           borderRadius: BorderRadius.circular(30),
                         ),
                         child: Text("LogIn",
-                          style: TextStyle(color: Colors.white,
+                          style: TextStyle(color: Colors.orange,
                           fontWeight: FontWeight.bold),),
                       ),
                     ),
+                    SizedBox(height: 10,),
+                    // GestureDetector(
+                    //   onTap: ()async{
+                    //     await _auth.LoginWithGoogle();
+                    //   },
+                    //   child: Container(
+                    //     height: 50,
+                    //     alignment: Alignment.center,
+                    //     width: double.infinity,
+                    //     decoration: BoxDecoration(
+                    //
+                    //       color: Colors.white,
+                    //       borderRadius: BorderRadius.circular(30),
+                    //     ),
+                    //     child: Text("SignUp with Google",
+                    //       style: TextStyle(color: Colors.orange,
+                    //           fontWeight: FontWeight.bold),),
+                    //   ),
+                    // ),
                     SizedBox(height: 10,),
                     Row(
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         Text("Don't Have An Account ? ",
                         style: TextStyle(
-                          color: Colors.blue
+                          color: Colors.black
                         ),),
                         GestureDetector(
                           onTap: (){
                             Navigator.push(context, MaterialPageRoute(builder: (context)=>SignUpPage()));
                           },
                           child:Text(" SignUp",style: TextStyle(
-                              color: Colors.white,
+                              color: Colors.blue,
                               fontWeight: FontWeight.bold
                           ),),
                         )
